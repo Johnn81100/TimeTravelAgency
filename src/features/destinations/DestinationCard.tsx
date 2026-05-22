@@ -1,17 +1,9 @@
-import type { LucideIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
+import type { DestinationData } from './destinationsData'
 
-export interface Destination {
-  era: string
-  title: string
-  description: string
-  gradient: string
-  tags: string[]
-  Icon: LucideIcon
-}
-
-export function DestinationCard({ destination }: { destination: Destination }) {
+export function DestinationCard({ destination }: { destination: DestinationData }) {
   const { Icon } = destination
 
   return (
@@ -32,7 +24,7 @@ export function DestinationCard({ destination }: { destination: Destination }) {
           {destination.title}
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-          {destination.description}
+          {destination.shortDescription}
         </p>
         <div className="mb-5 flex flex-wrap gap-2">
           {destination.tags.map((tag) => (
@@ -44,15 +36,15 @@ export function DestinationCard({ destination }: { destination: Destination }) {
             </span>
           ))}
         </div>
-        <a
-          href="#chatbot"
+        <Link
+          to={`/destination/${destination.id}`}
           className={cn(
             buttonVariants({ variant: 'outline' }),
             'mt-auto w-full transition-colors group-hover:border-primary group-hover:text-primary',
           )}
         >
           Explorer
-        </a>
+        </Link>
       </div>
     </div>
   )
