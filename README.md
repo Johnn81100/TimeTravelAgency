@@ -8,6 +8,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Tailwind CSS v4** (via `@tailwindcss/vite`, sans `tailwind.config.ts`)
 - **shadcn/ui** (composants UI, style `base-nova`)
 - **Font** : Geist Variable (`@fontsource-variable/geist`)
+- **Font display** : Cormorant Garamond (titres) + Geist Variable (UI)
 - **Animations** : à venir (Framer Motion)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
 - **Déploiement** : à venir (Vercel)

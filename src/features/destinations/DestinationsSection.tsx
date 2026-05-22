@@ -1,3 +1,4 @@
+import { Landmark, Trees, Palette } from 'lucide-react'
 import { DestinationCard, type Destination } from './DestinationCard'
 
 const DESTINATIONS: Destination[] = [
@@ -9,6 +10,7 @@ const DESTINATIONS: Destination[] = [
     gradient:
       'radial-gradient(ellipse at top, oklch(0.35 0.12 75) 0%, oklch(0.19 0.02 255) 70%)',
     tags: ['Tour Eiffel', 'Art Nouveau', 'Exposition Universelle'],
+    Icon: Landmark,
   },
   {
     era: '-65 000 000',
@@ -18,6 +20,7 @@ const DESTINATIONS: Destination[] = [
     gradient:
       'radial-gradient(ellipse at top, oklch(0.28 0.08 170) 0%, oklch(0.19 0.02 255) 70%)',
     tags: ['Dinosaures', 'Nature préhistorique', 'Aventure'],
+    Icon: Trees,
   },
   {
     era: '1504',
@@ -27,6 +30,7 @@ const DESTINATIONS: Destination[] = [
     gradient:
       'radial-gradient(ellipse at top, oklch(0.35 0.1 30) 0%, oklch(0.19 0.02 255) 70%)',
     tags: ['Michel-Ange', 'Art classique', 'Médicis'],
+    Icon: Palette,
   },
 ]
 
@@ -38,7 +42,7 @@ export function DestinationsSection() {
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-primary">
             Nos Destinations
           </p>
-          <h2 className="text-4xl font-bold text-foreground md:text-5xl">
+          <h2 className="font-display text-4xl font-light text-foreground md:text-5xl">
             Choisissez votre époque
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
