@@ -15,7 +15,7 @@ export function DestinationCard({ destination }: { destination: Destination }) {
   const { Icon } = destination
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
       <div
         className="relative flex h-48 w-full items-center justify-center"
         style={{ background: destination.gradient }}
@@ -27,7 +27,7 @@ export function DestinationCard({ destination }: { destination: Destination }) {
         </span>
       </div>
 
-      <div className="p-6">
+      <div className="flex flex-1 flex-col p-6">
         <h3 className="mb-2 font-display text-2xl font-light text-foreground">
           {destination.title}
         </h3>
@@ -48,7 +48,7 @@ export function DestinationCard({ destination }: { destination: Destination }) {
           href="#chatbot"
           className={cn(
             buttonVariants({ variant: 'outline' }),
-            'w-full transition-colors group-hover:border-primary group-hover:text-primary',
+            'mt-auto w-full transition-colors group-hover:border-primary group-hover:text-primary',
           )}
         >
           Explorer
