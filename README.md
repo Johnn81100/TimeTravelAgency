@@ -27,10 +27,10 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] shadcn/ui initialisé
 - [x] Thème dark navy + accents or (oklch)
 - [x] Alias `@/` → `src/`
-- [ ] Page d'accueil (Hero + Destinations + Chatbot)
-- [ ] Galerie des 3 destinations
-- [ ] Agent conversationnel IA
-- [ ] Déploiement
+- [x] Page d'accueil (Header + Hero + Footer)
+- [x] Galerie des 3 destinations (cartes avec gradient par époque)
+- [ ] Agent conversationnel IA (Mistral)
+- [ ] Déploiement Vercel
 
 ## Architecture — Feature-First
 
