@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/features/home/HeroSection'
 import { DestinationsSection } from '@/features/destinations/DestinationsSection'
+import { ChatWidget } from '@/features/chatbot/ChatWidget'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <DestinationsSection />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   )
 }

@@ -9,7 +9,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **shadcn/ui** (composants UI, style `base-nova`)
 - **Font** : Geist Variable (`@fontsource-variable/geist`)
 - **Animations** : à venir (Framer Motion)
-- **Chatbot IA** : à venir (API Mistral `mistral-small`)
+- **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
 - **Déploiement** : à venir (Vercel)
 
 ## Destinations
@@ -29,7 +29,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Alias `@/` → `src/`
 - [x] Page d'accueil (Header + Hero + Footer)
 - [x] Galerie des 3 destinations (cartes avec gradient par époque)
-- [ ] Agent conversationnel IA (Mistral)
+- [x] Agent conversationnel IA (Mistral `mistral-small-latest`, widget flottant)
 - [ ] Déploiement Vercel
 
 ## Architecture — Feature-First
