@@ -33,6 +33,7 @@ export function DestinationsSection() {
             <div
               key={d.id}
               className={cn(
+                'h-full',
                 !gridInView && 'opacity-0',
                 gridInView && 'animate-in fade-in slide-in-from-bottom-6 duration-700 [animation-fill-mode:both]',
               )}

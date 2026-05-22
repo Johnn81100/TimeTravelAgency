@@ -7,7 +7,7 @@ export function DestinationCard({ destination }: { destination: DestinationData 
   const { Icon } = destination
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
       <div
         className="relative flex h-48 w-full items-center justify-center"
         style={{ background: destination.gradient }}
