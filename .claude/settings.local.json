@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm dlx *)",
+      "Bash(Get-ChildItem C:\\\\Users\\\\gaujo\\\\Studio\\\\studio-projects\\\\TimeTravelAgency -Depth 0e suis seu l)",
+      "Bash(git diff *)",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"C:\\Users\\gaujo\\Studio\\studio-projects\\TimeTravelAgency\" && npm run lint --silent 2>&1 | head -30"
+          }
+        ]
+      }
+    ]
+  }
+}
