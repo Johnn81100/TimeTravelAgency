@@ -1,4 +1,6 @@
 import { Landmark, Trees, Palette } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { useInView } from '@/hooks/useInView'
 import { DestinationCard, type Destination } from './DestinationCard'
 
 const DESTINATIONS: Destination[] = [
@@ -35,10 +37,19 @@ const DESTINATIONS: Destination[] = [
 ]
 
 export function DestinationsSection() {
+  const { ref: titleRef, inView: titleInView } = useInView()
+  const { ref: gridRef, inView: gridInView } = useInView()
+
   return (
     <section id="destinations" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
+        <div
+          ref={titleRef}
+          className={cn(
+            'mb-12 text-center transition-none',
+            titleInView && 'animate-in fade-in slide-in-from-bottom-4 duration-700',
+          )}
+        >
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-primary">
             Nos Destinations
           </p>
@@ -49,9 +60,19 @@ export function DestinationsSection() {
             Trois voyages extraordinaires sélectionnés par nos experts en temporalité.
           </p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {DESTINATIONS.map((d) => (
-            <DestinationCard key={d.era} destination={d} />
+
+        <div ref={gridRef} className="grid gap-6 md:grid-cols-3">
+          {DESTINATIONS.map((d, i) => (
+            <div
+              key={d.era}
+              className={cn(
+                !gridInView && 'opacity-0',
+                gridInView && 'animate-in fade-in slide-in-from-bottom-6 duration-700 [animation-fill-mode:both]',
+              )}
+              style={{ animationDelay: gridInView ? `${i * 120}ms` : '0ms' }}
+            >
+              <DestinationCard destination={d} />
+            </div>
           ))}
         </div>
       </div>
