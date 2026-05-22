@@ -11,7 +11,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Font display** : Cormorant Garamond (titres) + Geist Variable (UI)
 - **Animations** : à venir (Framer Motion)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
-- **Déploiement** : à venir (Vercel)
+- **Déploiement** : Vercel — https://timetravelagency-kappa.vercel.app
 
 ## Destinations
 
@@ -31,7 +31,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Page d'accueil (Header + Hero + Footer)
 - [x] Galerie des 3 destinations (cartes avec gradient par époque)
 - [x] Agent conversationnel IA (Mistral `mistral-small-latest`, widget flottant)
-- [ ] Déploiement Vercel
+- [x] Déploiement Vercel
 
 ## Architecture — Feature-First
 
