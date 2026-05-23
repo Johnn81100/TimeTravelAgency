@@ -19,6 +19,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
 - **Déploiement** : Vercel
+- **Tests E2E** : Playwright (Chromium)
 
 ## Destinations
 
@@ -48,6 +49,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Ancrage hero → cartes directement (`#destination-cards`)
 - [x] Footer : Assistant IA ouvre le chatbot, Destinations scrolle vers les cartes
 - [x] cursor-pointer sur tous les boutons custom
+- [x] Tests E2E Playwright — golden path 7 tests (parcours accueil → destination → chatbot)
 
 ## Architecture — Feature-First
 
@@ -66,6 +68,9 @@ src/
 ├── main.tsx
 ├── index.css                  # Thème oklch, Tailwind v4
 └── vercel.json                # Rewrite SPA fallback
+tests/
+└── e2e/
+    └── golden-path.spec.ts    # Tests Playwright (parcours principal)
 ```
 
 Chaque feature est un dossier autonome — pas de dépendances croisées entre features.
@@ -93,6 +98,14 @@ Obtenir une clé sur [console.mistral.ai](https://console.mistral.ai).
 ```bash
 npm run dev
 ```
+
+## Tests E2E
+
+```bash
+npx playwright test --project=chromium --workers=1
+```
+
+Le rapport HTML est généré dans `playwright-report/`.
 
 ## Build
 
