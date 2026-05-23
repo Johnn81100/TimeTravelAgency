@@ -2,8 +2,12 @@
 
 Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre d'un TP scolaire.
 
-**Production :** https://timetravelagency-kappa.vercel.app
-**GitHub :** https://github.com/Johnn81100/TimeTravelAgency
+## Liens
+
+| | |
+|---|---|
+| 🚀 **Production** | [timetravelagency-kappa.vercel.app](https://timetravelagency-kappa.vercel.app) |
+| 💻 **GitHub** | [Johnn81100/TimeTravelAgency](https://github.com/Johnn81100/TimeTravelAgency) |
 
 ## Stack Technique
 
