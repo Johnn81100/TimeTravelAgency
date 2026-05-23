@@ -1,4 +1,7 @@
 import { Landmark, Trees, Palette, type LucideIcon } from 'lucide-react'
+import parisBg from '@/assets/paris-1889.jpg'
+import cretaceBg from '@/assets/cretace.webp'
+import florenceBg from '@/assets/florence-1504.jpg'
 
 export interface Highlight {
   title: string
@@ -12,6 +15,7 @@ export interface DestinationData {
   shortDescription: string
   longDescription: string
   gradient: string
+  image: string
   tags: string[]
   Icon: LucideIcon
   highlights: Highlight[]
@@ -23,6 +27,8 @@ export interface DestinationData {
   }
 }
 
+export { parisBg, cretaceBg, florenceBg }
+
 export const DESTINATIONS: DestinationData[] = [
   {
     id: 'paris-1889',
@@ -33,6 +39,7 @@ export const DESTINATIONS: DestinationData[] = [
     longDescription:
       "Paris, été 1889. La capitale française vit l'un des moments les plus spectaculaires de son histoire : l'Exposition Universelle bat son plein et la Tour Eiffel, flambant neuve, domine le ciel de fer et de lumière. Les rues résonnent de valses, les cafés débordent d'intellectuels et d'artistes, et l'Art Nouveau commence à fleurir sur chaque façade. Notre agence vous propose une immersion totale dans cette époque d'insouciance et de génie, loin des tensions qui couvent déjà sous la surface de l'Europe moderne.",
     gradient: 'radial-gradient(ellipse at top, oklch(0.35 0.12 75) 0%, oklch(0.19 0.02 255) 70%)',
+    image: parisBg,
     tags: ['Tour Eiffel', 'Art Nouveau', 'Exposition Universelle'],
     Icon: Landmark,
     highlights: [
@@ -65,6 +72,7 @@ export const DESTINATIONS: DestinationData[] = [
     longDescription:
       "Il y a 65 millions d'années, la Terre appartient aux dinosaures. Les titanosaures font trembler le sol de leur passage, les ptérosaures planent sur des cieux chauds et humides, et la végétation luxuriante d'une forêt crétacée vous enveloppe de sons et de parfums disparus depuis des éons. Notre capsule temporelle blindée de classe ALPHA vous garantit une observation en totale sécurité, avec des écrans panoramiques à 360° et une escorte de nos chronobiologistes certifiés. Le voyage le plus extrême de notre catalogue — réservé aux âmes véritablement aventureuses.",
     gradient: 'radial-gradient(ellipse at top, oklch(0.28 0.08 170) 0%, oklch(0.19 0.02 255) 70%)',
+    image: cretaceBg,
     tags: ['Dinosaures', 'Nature préhistorique', 'Aventure'],
     Icon: Trees,
     highlights: [
@@ -97,6 +105,7 @@ export const DESTINATIONS: DestinationData[] = [
     longDescription:
       "Florence, printemps 1504. Michel-Ange vient de terminer le David et commence à préparer la bataille de Cascina. Léonard de Vinci peint encore à quelques rues de là. Les Médicis règnent sur une cité-État qui est le centre intellectuel et artistique du monde occidental. Les palais débordent de mécènes, les ateliers bourdonnent de génies, et les places résonnent de débats philosophiques nourris par les grandes idées de l'Antiquité redécouvertes. Notre agence vous offre un accès exclusif à ce moment unique de l'histoire humaine.",
     gradient: 'radial-gradient(ellipse at top, oklch(0.35 0.1 30) 0%, oklch(0.19 0.02 255) 70%)',
+    image: florenceBg,
     tags: ['Michel-Ange', 'Art classique', 'Médicis'],
     Icon: Palette,
     highlights: [

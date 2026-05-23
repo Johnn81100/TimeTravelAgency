@@ -15,11 +15,13 @@ export function DestinationPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
-      <div
-        className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 text-center"
-        style={{ background: destination.gradient }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background" />
+      <div className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 text-center">
+        <img
+          src={destination.image}
+          alt={destination.title}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-background" />
 
         <div className="relative z-10 max-w-3xl">
           <Icon size={64} className="mx-auto mb-6 text-white/30" strokeWidth={1} />
