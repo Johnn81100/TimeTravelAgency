@@ -1,23 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-const MISTRAL_MOCK = {
-  choices: [
-    {
-      message: {
-        content: 'Paris 1889 est la destination idéale pour votre profil. La Belle Époque vous offrira une immersion culturelle incomparable dans le Paris de l\'Exposition Universelle.',
-      },
-    },
-  ],
+const PROXY_MOCK = {
+  content: "Paris 1889 est la destination idéale pour votre profil. La Belle Époque vous offrira une immersion culturelle incomparable dans le Paris de l'Exposition Universelle.",
 };
 
 test.describe('Quiz de recommandation', () => {
   test.beforeEach(async ({ page }) => {
-    // Intercepter toute requête vers l'API Mistral — aucun appel réseau externe
-    await page.route('**/api.mistral.ai/**', async (route) => {
+    // Intercepter le proxy /api/chat — aucun appel réseau externe
+    await page.route('**/api/chat', async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify(MISTRAL_MOCK),
+        body: JSON.stringify(PROXY_MOCK),
       });
     });
   });

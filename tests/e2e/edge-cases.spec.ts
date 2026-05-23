@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const MISTRAL_URL = 'https://api.mistral.ai/v1/chat/completions';
+const PROXY_URL = '**/api/chat';
 
 async function completeQuiz(page: Parameters<Parameters<typeof test>[1]>[0]) {
   await page.goto('/');
@@ -17,13 +17,11 @@ async function completeQuiz(page: Parameters<Parameters<typeof test>[1]>[0]) {
 
 test.describe('Cas limites', () => {
   test('quiz — destination non reconnue affiche le texte sans lien Explorer', async ({ page }) => {
-    await page.route(MISTRAL_URL, async (route) => {
+    await page.route(PROXY_URL, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({
-          choices: [{ message: { content: 'Nous vous recommandons une aventure unique et inoubliable.' } }],
-        }),
+        body: JSON.stringify({ content: 'Nous vous recommandons une aventure unique et inoubliable.' }),
       });
     });
 
@@ -35,11 +33,11 @@ test.describe('Cas limites', () => {
   });
 
   test('quiz — erreur Mistral 500 affiche le message de fallback', async ({ page }) => {
-    await page.route(MISTRAL_URL, async (route) => {
+    await page.route(PROXY_URL, async (route) => {
       await route.fulfill({
         status: 500,
         contentType: 'application/json',
-        body: JSON.stringify({ error: 'Internal Server Error' }),
+        body: JSON.stringify({ error: 'Mistral 500: Internal Server Error' }),
       });
     });
 
@@ -50,11 +48,11 @@ test.describe('Cas limites', () => {
   });
 
   test("chatbot — erreur Mistral 500 affiche un message d'erreur visible", async ({ page }) => {
-    await page.route(MISTRAL_URL, async (route) => {
+    await page.route(PROXY_URL, async (route) => {
       await route.fulfill({
         status: 500,
         contentType: 'application/json',
-        body: JSON.stringify({ error: 'Internal Server Error' }),
+        body: JSON.stringify({ error: 'Mistral 500: Internal Server Error' }),
       });
     });
 

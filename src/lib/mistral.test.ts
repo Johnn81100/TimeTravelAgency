@@ -6,54 +6,50 @@ vi.stubGlobal('fetch', mockFetch)
 
 beforeEach(() => {
   mockFetch.mockReset()
-  vi.stubEnv('VITE_MISTRAL_API_KEY', 'test-key')
 })
 
 describe('sendMessage', () => {
-  it('retourne le contenu de la réponse Mistral', async () => {
+  it('retourne le contenu de la réponse du proxy', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({
-        choices: [{ message: { content: 'Bonjour, voyageur temporel !' } }],
-      }),
+      json: async () => ({ content: 'Bonjour, voyageur temporel !' }),
     })
 
     const result = await sendMessage([{ role: 'user', content: 'Bonjour' }])
     expect(result).toBe('Bonjour, voyageur temporel !')
   })
 
-  it('appelle le bon endpoint avec la bonne méthode', async () => {
+  it('appelle le proxy /api/chat avec la bonne méthode', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ choices: [{ message: { content: 'ok' } }] }),
+      json: async () => ({ content: 'ok' }),
     })
 
     await sendMessage([{ role: 'user', content: 'test' }])
 
     expect(mockFetch).toHaveBeenCalledWith(
-      'https://api.mistral.ai/v1/chat/completions',
+      '/api/chat',
       expect.objectContaining({ method: 'POST' }),
     )
   })
 
-  it('inclut le system prompt dans les messages envoyés', async () => {
+  it('envoie les messages utilisateur sans injecter de system prompt', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ choices: [{ message: { content: 'ok' } }] }),
+      json: async () => ({ content: 'ok' }),
     })
 
     await sendMessage([{ role: 'user', content: 'test' }])
 
     const body = JSON.parse(mockFetch.mock.calls[0][1].body)
-    expect(body.messages[0].role).toBe('system')
-    expect(body.messages[1]).toEqual({ role: 'user', content: 'test' })
+    expect(body.messages).toEqual([{ role: 'user', content: 'test' }])
   })
 
-  it("lève une erreur avec le statut HTTP en cas d'échec", async () => {
+  it("lève une erreur avec le message d'erreur du proxy en cas d'échec", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
       status: 401,
-      text: async () => 'Unauthorized',
+      json: async () => ({ error: 'Mistral 401: Unauthorized' }),
     })
 
     await expect(sendMessage([{ role: 'user', content: 'test' }])).rejects.toThrow('Mistral 401')
@@ -63,7 +59,7 @@ describe('sendMessage', () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
       status: 429,
-      text: async () => 'Too Many Requests',
+      json: async () => ({ error: 'Mistral 429: Too Many Requests' }),
     })
 
     await expect(sendMessage([{ role: 'user', content: 'test' }])).rejects.toThrow('Mistral 429')
