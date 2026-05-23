@@ -41,7 +41,8 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Animations au chargement (Hero) et au scroll (cartes)
 - [x] Agent conversationnel IA (Mistral `mistral-small-latest`, widget flottant sur toutes les pages)
 - [x] Déploiement Vercel
-- [x] Corrections audit : SPA fallback, routing catch-all, CTA chatbot, animations
+- [x] Corrections audit : SPA fallback, routing catch-all, animations
+- [x] Ouverture chatbot depuis nav, hero et pages destination (custom event `open-chatbot`)
 
 ## Architecture — Feature-First
 
