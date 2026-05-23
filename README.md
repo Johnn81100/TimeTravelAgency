@@ -18,7 +18,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Font** : Geist Variable (UI) + Cormorant Garamond (titres display)
 - **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered) + **Framer Motion** (transitions de page)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
-- **Déploiement** : Vercel
+- **Déploiement** : Vercel + **Vercel Analytics** (suivi des pages vues par route)
 - **Tests unitaires** : Vitest + jsdom + Testing Library (fonctions clés)
 - **Tests E2E** : Playwright (Chromium + Mobile Chrome)
 - **Qualité** : ESLint (erreurs de code) + Prettier (formatage uniforme)
@@ -40,7 +40,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - Widget chatbot IA flottant sur toutes les pages (Mistral `mistral-small-latest`)
 - Quiz de recommandation IA (4 questions → recommandation Mistral → destination personnalisée)
 - Menu hamburger sur mobile
-- Déploiement Vercel avec fallback SPA
+- Déploiement Vercel avec fallback SPA + Analytics (suivi des routes via `<Analytics />` React)
 - 15 tests unitaires Vitest (fonctions clés : `getDestinationById`, `sendMessage`, `useChatbot`)
 - 39 tests E2E Playwright (parcours principal, quiz, cas limites, responsive)
 
