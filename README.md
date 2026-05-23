@@ -21,7 +21,8 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Déploiement** : Vercel
 - **Tests unitaires** : Vitest + jsdom + Testing Library (fonctions clés)
 - **Tests E2E** : Playwright (Chromium + Mobile Chrome)
-- **CI** : GitHub Actions — unitaires puis E2E sur chaque push/PR vers `main`
+- **Qualité** : ESLint (erreurs de code) + Prettier (formatage uniforme)
+- **CI** : GitHub Actions — ESLint → Prettier → Vitest → Playwright (fail fast)
 
 ## Destinations
 
@@ -106,7 +107,7 @@ Ce projet a été entièrement développé avec des outils IA :
 - **Animations de page** : Framer Motion `AnimatePresence` + `PageTransition` wrapper — fade + glissement 250ms entre les routes ; scroll-to-top `useEffect` sur chaque navigation
 - **Tests unitaires** : 15 tests Vitest sur les fonctions clés (`getDestinationById`, `sendMessage`, `useChatbot`) — fetch mocké via `vi.stubGlobal`, hook testé avec `renderHook`
 - **Tests E2E** : 39 tests Playwright — golden path, quiz (Mistral mocké via `page.route()`), cas limites (erreurs 500, abandon, responsive)
-- **CI** : GitHub Actions — unitaires d'abord (fail fast), puis E2E ; protection de branche `main` bloque le merge si non verts
+- **CI** : pipeline atomique — ESLint → Prettier → Vitest → Playwright ; si une étape échoue les suivantes ne s'exécutent pas, la branche `main` est protégée
 
 ## Installation
 
