@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { HomePage } from '@/features/home/HomePage'
 import { DestinationPage } from '@/features/destinations/DestinationPage'
 import { ChatWidget } from '@/features/chatbot/ChatWidget'
+import { QuizModal } from '@/features/quiz/QuizModal'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <ChatWidget />
+      <QuizModal />
     </BrowserRouter>
   )
 }
