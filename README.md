@@ -54,12 +54,12 @@ src/
 │   └── quiz/                  # Quiz de recommandation IA
 ├── components/
 │   ├── ui/                    # Composants shadcn/ui (Button)
-│   └── layout/                # Header, Footer
+│   └── layout/                # Header, Footer, PageTransition (Framer Motion)
 ├── hooks/                     # useInView (Intersection Observer)
 ├── lib/                       # cn(), client API Mistral
 ├── assets/                    # Images destinations (paris-1889, cretace, florence-1504)
 ├── test/                      # Setup Vitest + mock assets
-├── App.tsx                    # Router + routes + ChatWidget + QuizModal globaux
+├── App.tsx                    # BrowserRouter + AnimatedRoutes (AnimatePresence) + ChatWidget + QuizModal
 ├── main.tsx
 ├── index.css                  # Thème oklch, Tailwind v4
 └── vercel.json                # Rewrite SPA fallback
@@ -103,6 +103,7 @@ Ce projet a été entièrement développé avec des outils IA :
 - **Composants** : chaque feature générée via Claude Code avec itérations successives (corrections de bugs, alignement des boutons, animations)
 - **Design review** : agent Alexis invoqué pour audit UX — corrections appliquées sur le header, footer, cartes et chatbot
 - **Chatbot** : intégration API Mistral avec hook custom `useChatbot`, gestion du loading/erreur et auto-scroll
+- **Animations de page** : Framer Motion `AnimatePresence` + `PageTransition` wrapper — fade + glissement 250ms entre les routes ; scroll-to-top `useEffect` sur chaque navigation
 - **Tests unitaires** : 15 tests Vitest sur les fonctions clés (`getDestinationById`, `sendMessage`, `useChatbot`) — fetch mocké via `vi.stubGlobal`, hook testé avec `renderHook`
 - **Tests E2E** : 39 tests Playwright — golden path, quiz (Mistral mocké via `page.route()`), cas limites (erreurs 500, abandon, responsive)
 - **CI** : GitHub Actions — unitaires d'abord (fail fast), puis E2E ; protection de branche `main` bloque le merge si non verts
