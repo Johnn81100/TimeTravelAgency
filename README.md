@@ -67,6 +67,7 @@ Chaque feature est un dossier autonome — pas de dépendances croisées entre f
 ## IA Utilisées
 
 - **Code** : Claude Code (claude.ai/code)
+- **Design review** : Claude Code — agent Alexis (UI/UX)
 - **Chatbot** : Mistral AI API (`mistral-small-latest`)
 
 ## Installation
