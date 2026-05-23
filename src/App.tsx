@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import { HomePage } from '@/features/home/HomePage'
 import { DestinationPage } from '@/features/destinations/DestinationPage'
 import { ChatWidget } from '@/features/chatbot/ChatWidget'
@@ -40,6 +41,7 @@ function App() {
       <AnimatedRoutes />
       <ChatWidget />
       <QuizModal />
+      <Analytics />
     </BrowserRouter>
   )
 }
