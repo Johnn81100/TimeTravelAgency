@@ -34,7 +34,7 @@ export function HeroSection() {
         </p>
         <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center justify-center gap-4 duration-700 sm:flex-row [animation-delay:360ms] [animation-fill-mode:both]">
           <a
-            href="#destinations"
+            href="#destination-cards"
             className={cn(buttonVariants({ size: 'lg' }), 'px-8')}
           >
             Découvrir les destinations

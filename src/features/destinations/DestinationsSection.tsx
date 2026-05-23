@@ -28,7 +28,7 @@ export function DestinationsSection() {
           </p>
         </div>
 
-        <div ref={gridRef} className="grid gap-6 md:grid-cols-3">
+        <div id="destination-cards" ref={gridRef} className="grid gap-6 md:grid-cols-3 [scroll-margin-top:80px]">
           {DESTINATIONS.map((d, i) => (
             <div
               key={d.id}
