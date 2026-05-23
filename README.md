@@ -29,27 +29,14 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 | Crétacé -65M | Dinosaures, nature préhistorique | `/destination/cretace` |
 | Florence 1504 | Renaissance, Michel-Ange, art classique | `/destination/florence-1504` |
 
-## Features implémentées
+## Features
 
-- [x] Initialisation du projet (Vite + React + TS)
-- [x] Tailwind CSS v4 configuré
-- [x] shadcn/ui initialisé
-- [x] Thème dark navy + accents or (oklch)
-- [x] Architecture feature-first (`src/features/`)
-- [x] Page d'accueil (Header + Hero + Footer)
-- [x] Galerie des 3 destinations (cartes avec gradient par époque)
-- [x] Pages de détail par destination (React Router)
-- [x] Animations au chargement (Hero) et au scroll (cartes)
-- [x] Agent conversationnel IA (Mistral `mistral-small-latest`, widget flottant sur toutes les pages)
-- [x] Déploiement Vercel
-- [x] Corrections audit : SPA fallback, routing catch-all, animations
-- [x] Ouverture chatbot depuis nav, hero et pages destination (custom event `open-chatbot`)
-- [x] Scroll-margin-top sur la section destinations (header sticky)
-- [x] Menu hamburger mobile (Destinations, Assistant IA, Réserver)
-- [x] Ancrage hero → cartes directement (`#destination-cards`)
-- [x] Footer : Assistant IA ouvre le chatbot, Destinations scrolle vers les cartes
-- [x] cursor-pointer sur tous les boutons custom
-- [x] Tests E2E Playwright — golden path 7 tests (parcours accueil → destination → chatbot)
+- Page d'accueil : hero animé, galerie des 3 destinations, footer
+- Navigation SPA avec React Router — pages de détail par destination
+- Animations au chargement (hero) et au scroll (cartes, Intersection Observer)
+- Widget chatbot IA flottant sur toutes les pages (Mistral `mistral-small-latest`)
+- Menu hamburger sur mobile
+- Déploiement Vercel avec fallback SPA
 
 ## Architecture — Feature-First
 
