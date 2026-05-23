@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { ArrowLeft, Clock, Sun, Shield, Coins } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
@@ -7,6 +8,8 @@ import { getDestinationById } from './destinationsData'
 export function DestinationPage() {
   const { id } = useParams<{ id: string }>()
   const destination = getDestinationById(id ?? '')
+
+  useEffect(() => { window.scrollTo(0, 0) }, [id])
 
   if (!destination) return <Navigate to="/" replace />
 
