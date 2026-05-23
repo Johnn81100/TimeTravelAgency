@@ -19,7 +19,8 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
 - **Déploiement** : Vercel
-- **Tests E2E** : Playwright (Chromium)
+- **Tests E2E** : Playwright (Chromium + Mobile Chrome)
+- **CI** : GitHub Actions (tests sur chaque push/PR vers `main`)
 
 ## Destinations
 
@@ -35,8 +36,10 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - Navigation SPA avec React Router — pages de détail par destination
 - Animations au chargement (hero) et au scroll (cartes, Intersection Observer)
 - Widget chatbot IA flottant sur toutes les pages (Mistral `mistral-small-latest`)
+- Quiz de recommandation IA (4 questions → recommandation Mistral → destination personnalisée)
 - Menu hamburger sur mobile
 - Déploiement Vercel avec fallback SPA
+- 39 tests E2E Playwright (parcours principal, quiz, cas limites, responsive)
 
 ## Architecture — Feature-First
 
@@ -45,19 +48,26 @@ src/
 ├── features/
 │   ├── home/                  # Hero, HomePage
 │   ├── destinations/          # Cartes, page de détail, data
-│   └── chatbot/               # Widget IA, hook, messages
+│   ├── chatbot/               # Widget IA, hook, messages
+│   └── quiz/                  # Quiz de recommandation IA
 ├── components/
 │   ├── ui/                    # Composants shadcn/ui (Button)
 │   └── layout/                # Header, Footer
 ├── hooks/                     # useInView (Intersection Observer)
 ├── lib/                       # cn(), client API Mistral
-├── App.tsx                    # Router + routes + ChatWidget global
+├── assets/                    # Images destinations (paris-1889, cretace, florence-1504)
+├── App.tsx                    # Router + routes + ChatWidget + QuizModal globaux
 ├── main.tsx
 ├── index.css                  # Thème oklch, Tailwind v4
 └── vercel.json                # Rewrite SPA fallback
 tests/
 └── e2e/
-    └── golden-path.spec.ts    # Tests Playwright (parcours principal)
+    ├── golden-path.spec.ts    # 7 tests — parcours principal
+    ├── quiz.spec.ts           # 5 tests — quiz complet (Mistral mocké)
+    └── edge-cases.spec.ts     # 9 tests — cas limites, abandon, responsive
+.github/
+└── workflows/
+    └── e2e.yml                # CI — build + Playwright sur push/PR main
 ```
 
 Chaque feature est un dossier autonome — pas de dépendances croisées entre features.
@@ -90,7 +100,8 @@ Ce projet a été entièrement développé avec des outils IA :
 - **Composants** : chaque feature générée via Claude Code avec itérations successives (corrections de bugs, alignement des boutons, animations)
 - **Design review** : agent Alexis invoqué pour audit UX — corrections appliquées sur le header, footer, cartes et chatbot
 - **Chatbot** : intégration API Mistral avec hook custom `useChatbot`, gestion du loading/erreur et auto-scroll
-- **Tests** : Playwright configuré et 7 tests E2E écrits avec Claude Code, débogage des sélecteurs en itérations
+- **Tests** : 39 tests E2E Playwright écrits avec Claude Code — golden path, quiz (Mistral mocké via `page.route()`), cas limites (erreurs 500, abandon de quiz, responsive), débogage de race conditions et worker concurrency
+- **CI** : workflow GitHub Actions + règle de protection de branche `main` — les tests bloquent le merge si non verts
 
 ## Installation
 
@@ -113,8 +124,20 @@ npm run dev
 ## Tests E2E
 
 ```bash
-npx playwright test --project=chromium --workers=1
+npx playwright test                  # tous les tests (Chromium + Mobile Chrome)
+npx playwright test --project=chromium  # Chromium uniquement
+npx playwright test tests/e2e/edge-cases.spec.ts  # un fichier spécifique
 ```
+
+39 tests répartis en 3 fichiers :
+
+| Fichier | Tests | Couverture |
+|---|---|---|
+| `golden-path.spec.ts` | 7 | Navigation, hero, chatbot, routing |
+| `quiz.spec.ts` | 5 | Quiz complet, reset, fermeture |
+| `edge-cases.spec.ts` | 9 | Erreurs API, abandon, responsive |
+
+Les appels Mistral sont mockés via `page.route()` — aucune dépendance réseau externe.
 
 Le rapport HTML est généré dans `playwright-report/`.
 
