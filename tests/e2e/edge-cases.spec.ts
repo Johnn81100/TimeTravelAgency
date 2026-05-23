@@ -68,3 +68,82 @@ test.describe('Cas limites', () => {
     await expect(page.getByText(/Mistral 500/i)).toBeVisible({ timeout: 8000 });
   });
 });
+
+test.describe('Chatbot — saisie', () => {
+  test('chatbot — bouton envoi désactivé si message vide', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: /Ouvrir le chat/i }).click();
+    await expect(page.locator('#chatbot').getByText('Assistant IA', { exact: true })).toBeVisible();
+
+    const submit = page.locator('#chatbot button[type="submit"]');
+    await expect(submit).toBeDisabled();
+
+    await page.getByPlaceholder('Posez votre question...').fill('Bonjour');
+    await expect(submit).toBeEnabled();
+
+    await page.getByPlaceholder('Posez votre question...').clear();
+    await expect(submit).toBeDisabled();
+  });
+});
+
+test.describe('Quiz — abandon', () => {
+  test('quiz — fermeture à la question 2 réinitialise le modal', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: /Trouver ma destination/i }).click();
+    await expect(page.getByText('Trouvez votre destination')).toBeVisible();
+    await page.getByText('Culturelle et artistique').click();
+    await expect(page.getByText('Question 2 / 4')).toBeVisible();
+
+    await page.getByRole('button', { name: /Fermer/i }).click();
+    await expect(page.getByText('Trouvez votre destination')).not.toBeVisible();
+  });
+
+  test('quiz — fermeture à la question 3 réinitialise le modal', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: /Trouver ma destination/i }).click();
+    await expect(page.getByText('Trouvez votre destination')).toBeVisible();
+    await page.getByText('Culturelle et artistique').click();
+    await expect(page.getByText('Question 2 / 4')).toBeVisible();
+    await page.getByText('Histoire moderne').click();
+    await expect(page.getByText('Question 3 / 4')).toBeVisible();
+
+    await page.getByRole('button', { name: /Fermer/i }).click();
+    await expect(page.getByText('Trouvez votre destination')).not.toBeVisible();
+  });
+});
+
+test.describe('Responsive — header', () => {
+  test('mobile — hamburger visible, nav desktop masquée', async ({ page }) => {
+    const viewport = page.viewportSize();
+    if (!viewport || viewport.width >= 768) test.skip();
+
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: /Ouvrir le menu/i })).toBeVisible();
+    await expect(page.locator('nav.hidden')).not.toBeVisible();
+  });
+
+  test('mobile — hamburger ouvre et ferme le menu', async ({ page }) => {
+    const viewport = page.viewportSize();
+    if (!viewport || viewport.width >= 768) test.skip();
+
+    await page.goto('/');
+    await page.getByRole('button', { name: /Ouvrir le menu/i }).click();
+    await expect(page.getByRole('button', { name: /Fermer le menu/i })).toBeVisible();
+
+    // Les liens du menu mobile sont visibles
+    const mobileNav = page.locator('header div.md\\:hidden nav');
+    await expect(mobileNav.getByRole('link', { name: 'Destinations' })).toBeVisible();
+
+    await page.getByRole('button', { name: /Fermer le menu/i }).click();
+    await expect(mobileNav).not.toBeVisible();
+  });
+
+  test('desktop — nav principale visible, hamburger masqué', async ({ page }) => {
+    const viewport = page.viewportSize();
+    if (!viewport || viewport.width < 768) test.skip();
+
+    await page.goto('/');
+    await expect(page.locator('header nav').filter({ hasText: 'Destinations' })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Ouvrir le menu/i })).not.toBeVisible();
+  });
+});
