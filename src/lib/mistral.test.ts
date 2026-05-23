@@ -27,10 +27,7 @@ describe('sendMessage', () => {
 
     await sendMessage([{ role: 'user', content: 'test' }])
 
-    expect(mockFetch).toHaveBeenCalledWith(
-      '/api/chat',
-      expect.objectContaining({ method: 'POST' }),
-    )
+    expect(mockFetch).toHaveBeenCalledWith('/api/chat', expect.objectContaining({ method: 'POST' }))
   })
 
   it('envoie les messages utilisateur sans injecter de system prompt', async () => {
