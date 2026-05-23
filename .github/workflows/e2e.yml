@@ -1,4 +1,4 @@
-name: E2E Tests
+name: CI
 
 on:
   push:
@@ -22,19 +22,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Unit tests
+      # — Qualité du code —
+      - name: Lint (ESLint) — erreurs de code
+        run: npm run lint
+
+      - name: Format (Prettier) — uniformité du style
+        run: npm run format:check
+
+      # — Tests —
+      - name: Unit tests (Vitest) — logique métier
         run: npm test -- --run
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Build & run e2e tests
+      - name: E2E tests (Playwright) — parcours utilisateur
         run: npx playwright test
         env:
           CI: true
           VITE_MISTRAL_API_KEY: ${{ secrets.VITE_MISTRAL_API_KEY }}
 
-      - name: Upload test report
+      - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4
         with:
