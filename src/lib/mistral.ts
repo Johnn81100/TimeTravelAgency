@@ -18,7 +18,10 @@ export async function sendMessage(messages: Message[]): Promise<string> {
     }),
   })
 
-  if (!response.ok) throw new Error('Erreur API Mistral')
+  if (!response.ok) {
+    const body = await response.text().catch(() => '')
+    throw new Error(`Mistral ${response.status}: ${body}`)
+  }
 
   const data = await response.json()
   return data.choices[0].message.content as string

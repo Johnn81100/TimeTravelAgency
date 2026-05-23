@@ -16,8 +16,9 @@ export function useChatbot() {
     try {
       const reply = await sendMessage(next)
       setMessages([...next, { role: 'assistant', content: reply }])
-    } catch {
-      setError('Une erreur est survenue. Veuillez réessayer.')
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      setError(msg)
     } finally {
       setLoading(false)
     }
