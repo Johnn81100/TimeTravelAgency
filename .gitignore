@@ -29,3 +29,20 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.playwright-mcp/
+
+# Design — maquettes Alexis (référence locale, pas du code de production)
+/design/
+
+# Specs — documents pédagogiques
+/spec/
+
+# Screenshots de debug
+*.png
