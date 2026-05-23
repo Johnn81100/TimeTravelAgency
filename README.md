@@ -45,6 +45,9 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Ouverture chatbot depuis nav, hero et pages destination (custom event `open-chatbot`)
 - [x] Scroll-margin-top sur la section destinations (header sticky)
 - [x] Menu hamburger mobile (Destinations, Assistant IA, Réserver)
+- [x] Ancrage hero → cartes directement (`#destination-cards`)
+- [x] Footer : Assistant IA ouvre le chatbot, Destinations scrolle vers les cartes
+- [x] cursor-pointer sur tous les boutons custom
 
 ## Architecture — Feature-First
 
