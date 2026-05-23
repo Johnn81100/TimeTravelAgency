@@ -24,7 +24,7 @@ export function Header() {
           </a>
           <button
             onClick={openChatbot}
-            className="transition-colors hover:text-foreground"
+            className="cursor-pointer transition-colors hover:text-foreground"
           >
             Assistant IA
           </button>

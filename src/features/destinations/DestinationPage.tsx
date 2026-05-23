@@ -133,7 +133,7 @@ export function DestinationPage() {
           </p>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-chatbot'))}
-            className={cn(buttonVariants({ size: 'lg' }), 'px-8')}
+            className={cn(buttonVariants({ size: 'lg' }), 'cursor-pointer px-8')}
           >
             Parler à notre assistant
           </button>

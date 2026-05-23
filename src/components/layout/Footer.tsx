@@ -17,7 +17,7 @@ export function Footer() {
             <a href="#destination-cards" className="transition-colors hover:text-foreground">
               Destinations
             </a>
-            <button onClick={openChatbot} className="transition-colors hover:text-foreground">
+            <button onClick={openChatbot} className="cursor-pointer transition-colors hover:text-foreground">
               Assistant IA
             </button>
             <a href="#" className="transition-colors hover:text-foreground">

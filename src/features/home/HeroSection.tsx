@@ -41,7 +41,7 @@ export function HeroSection() {
           </a>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-chatbot'))}
-            className="inline-flex h-9 items-center justify-center rounded-lg border border-white/20 bg-white/5 px-8 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:text-primary"
+            className="inline-flex h-9 cursor-pointer items-center justify-center rounded-lg border border-white/20 bg-white/5 px-8 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:text-primary"
           >
             Parler à notre assistant
           </button>
