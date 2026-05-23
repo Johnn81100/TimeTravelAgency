@@ -1,3 +1,7 @@
+function openChatbot() {
+  window.dispatchEvent(new CustomEvent('open-chatbot'))
+}
+
 export function Footer() {
   return (
     <footer className="border-t border-border">
@@ -10,12 +14,12 @@ export function Footer() {
             </p>
           </div>
           <nav className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#destinations" className="transition-colors hover:text-foreground">
+            <a href="#destination-cards" className="transition-colors hover:text-foreground">
               Destinations
             </a>
-            <a href="#chatbot" className="transition-colors hover:text-foreground">
+            <button onClick={openChatbot} className="transition-colors hover:text-foreground">
               Assistant IA
-            </a>
+            </button>
             <a href="#" className="transition-colors hover:text-foreground">
               Contact
             </a>
