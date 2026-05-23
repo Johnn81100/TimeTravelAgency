@@ -8,7 +8,7 @@ export function DestinationsSection() {
   const { ref: gridRef, inView: gridInView } = useInView()
 
   return (
-    <section id="destinations" className="px-6 py-24">
+    <section id="destinations" className="px-6 py-24 [scroll-margin-top:80px]">
       <div className="mx-auto max-w-6xl">
         <div
           ref={titleRef}
