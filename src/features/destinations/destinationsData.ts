@@ -44,16 +44,19 @@ export const DESTINATIONS: DestinationData[] = [
     Icon: Landmark,
     highlights: [
       {
-        title: "Inauguration de la Tour Eiffel",
-        description: "Soyez présent le 31 mars 1889 lors de la cérémonie officielle d'inauguration. Montez au sommet avec Gustave Eiffel lui-même.",
+        title: 'Inauguration de la Tour Eiffel',
+        description:
+          "Soyez présent le 31 mars 1889 lors de la cérémonie officielle d'inauguration. Montez au sommet avec Gustave Eiffel lui-même.",
       },
       {
-        title: "Nuit au Moulin Rouge",
-        description: "Le cabaret vient d'ouvrir ses portes. Vivez la première soirée de french cancan dans une salle encore inconnue du monde entier.",
+        title: 'Nuit au Moulin Rouge',
+        description:
+          "Le cabaret vient d'ouvrir ses portes. Vivez la première soirée de french cancan dans une salle encore inconnue du monde entier.",
       },
       {
-        title: "Galerie des Machines",
-        description: "Parcourez l'immense palais de fer et de verre qui abrite les merveilles industrielles du siècle — vapeur, électricité, mécanique de précision.",
+        title: 'Galerie des Machines',
+        description:
+          "Parcourez l'immense palais de fer et de verre qui abrite les merveilles industrielles du siècle — vapeur, électricité, mécanique de précision.",
       },
     ],
     practical: {
@@ -77,16 +80,19 @@ export const DESTINATIONS: DestinationData[] = [
     Icon: Trees,
     highlights: [
       {
-        title: "Safari tyrannosaures",
-        description: "Observez un T-Rex adulte dans son habitat naturel depuis la sécurité de notre capsule. Distance minimale garantie : 200 mètres.",
+        title: 'Safari tyrannosaures',
+        description:
+          'Observez un T-Rex adulte dans son habitat naturel depuis la sécurité de notre capsule. Distance minimale garantie : 200 mètres.',
       },
       {
-        title: "Survol en ptérosaure",
-        description: "Notre module de vol discret vous permet de planer aux côtés des ptérosaures géants sur les falaises côtières du Crétacé supérieur.",
+        title: 'Survol en ptérosaure',
+        description:
+          'Notre module de vol discret vous permet de planer aux côtés des ptérosaures géants sur les falaises côtières du Crétacé supérieur.',
       },
       {
-        title: "Forêt fossile vivante",
-        description: "Marchez (en combinaison pressurisée) dans une forêt de fougères arborescentes et de cycas vieux de 65 millions d'années.",
+        title: 'Forêt fossile vivante',
+        description:
+          "Marchez (en combinaison pressurisée) dans une forêt de fougères arborescentes et de cycas vieux de 65 millions d'années.",
       },
     ],
     practical: {
@@ -110,16 +116,19 @@ export const DESTINATIONS: DestinationData[] = [
     Icon: Palette,
     highlights: [
       {
-        title: "Atelier de Michel-Ange",
-        description: "Assistez au travail du maître sur ses esquisses pour la Chapelle Sixtine, dans son atelier florentin, sous la lumière d'une bougie de cire.",
+        title: 'Atelier de Michel-Ange',
+        description:
+          "Assistez au travail du maître sur ses esquisses pour la Chapelle Sixtine, dans son atelier florentin, sous la lumière d'une bougie de cire.",
       },
       {
         title: "Galerie des Offices avant l'heure",
-        description: "Visitez les collections Médicis dans le palais même des Uffizi, avant qu'elles ne deviennent musée — et marchandisez avec leurs conservateurs.",
+        description:
+          "Visitez les collections Médicis dans le palais même des Uffizi, avant qu'elles ne deviennent musée — et marchandisez avec leurs conservateurs.",
       },
       {
-        title: "Soirée chez les Médicis",
-        description: "Participez à un banquet chez Lorenzo di Pierfrancesco de Médicis, aux côtés des philosophes et artistes qui façonnent la pensée européenne.",
+        title: 'Soirée chez les Médicis',
+        description:
+          'Participez à un banquet chez Lorenzo di Pierfrancesco de Médicis, aux côtés des philosophes et artistes qui façonnent la pensée européenne.',
       },
     ],
     practical: {

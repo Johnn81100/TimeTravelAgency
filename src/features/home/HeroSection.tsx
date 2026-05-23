@@ -25,18 +25,14 @@ export function HeroSection() {
           Agence de Voyages Temporels
         </p>
         <h1 className="animate-in fade-in slide-in-from-bottom-4 mb-6 font-display text-5xl font-light tracking-tight text-foreground duration-700 md:text-7xl [animation-delay:120ms] [animation-fill-mode:both]">
-          Voyagez à travers{' '}
-          <span className="italic text-primary">les époques</span>
+          Voyagez à travers <span className="italic text-primary">les époques</span>
         </h1>
         <p className="animate-in fade-in slide-in-from-bottom-4 mb-10 text-lg text-muted-foreground duration-700 md:text-xl [animation-delay:240ms] [animation-fill-mode:both]">
-          Découvrez des destinations uniques, inédites, impossibles.
-          De la Belle Époque au Crétacé, chaque voyage est une expérience hors du temps.
+          Découvrez des destinations uniques, inédites, impossibles. De la Belle Époque au Crétacé,
+          chaque voyage est une expérience hors du temps.
         </p>
         <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center justify-center gap-4 duration-700 sm:flex-row [animation-delay:360ms] [animation-fill-mode:both]">
-          <a
-            href="#destination-cards"
-            className={cn(buttonVariants({ size: 'lg' }), 'px-8')}
-          >
+          <a href="#destination-cards" className={cn(buttonVariants({ size: 'lg' }), 'px-8')}>
             Découvrir les destinations
           </a>
           <button

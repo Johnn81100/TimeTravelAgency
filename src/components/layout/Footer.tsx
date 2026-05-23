@@ -17,7 +17,10 @@ export function Footer() {
             <a href="#destination-cards" className="transition-colors hover:text-foreground">
               Destinations
             </a>
-            <button onClick={openChatbot} className="cursor-pointer transition-colors hover:text-foreground">
+            <button
+              onClick={openChatbot}
+              className="cursor-pointer transition-colors hover:text-foreground"
+            >
               Assistant IA
             </button>
             <a href="#" className="transition-colors hover:text-foreground">
@@ -26,7 +29,10 @@ export function Footer() {
           </nav>
         </div>
         <div className="mt-8 border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          <p>© 2026 TimeTravel Agency — Agence de voyages temporels agréée par le Ministère de la Chronologie</p>
+          <p>
+            © 2026 TimeTravel Agency — Agence de voyages temporels agréée par le Ministère de la
+            Chronologie
+          </p>
           <p className="mt-1">Projet pédagogique M1/M2 Digital & IA</p>
         </div>
       </div>

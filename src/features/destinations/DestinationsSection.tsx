@@ -28,14 +28,19 @@ export function DestinationsSection() {
           </p>
         </div>
 
-        <div id="destination-cards" ref={gridRef} className="grid gap-6 md:grid-cols-3 [scroll-margin-top:80px]">
+        <div
+          id="destination-cards"
+          ref={gridRef}
+          className="grid gap-6 md:grid-cols-3 [scroll-margin-top:80px]"
+        >
           {DESTINATIONS.map((d, i) => (
             <div
               key={d.id}
               className={cn(
                 'h-full',
                 !gridInView && 'opacity-0',
-                gridInView && 'animate-in fade-in slide-in-from-bottom-6 duration-700 [animation-fill-mode:both]',
+                gridInView &&
+                  'animate-in fade-in slide-in-from-bottom-6 duration-700 [animation-fill-mode:both]',
               )}
               style={{ animationDelay: gridInView ? `${i * 120}ms` : '0ms' }}
             >

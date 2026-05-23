@@ -16,7 +16,9 @@ export function QuizModal() {
   const [destinationId, setDestinationId] = useState<string | null>(null)
 
   useEffect(() => {
-    function handleOpen() { setOpen(true) }
+    function handleOpen() {
+      setOpen(true)
+    }
     window.addEventListener('open-quiz', handleOpen)
     return () => window.removeEventListener('open-quiz', handleOpen)
   }, [])
@@ -59,7 +61,9 @@ Commence ta réponse par le nom exact de la destination recommandée, puis expli
       else if (lower.includes('crétacé') || lower.includes('cretace')) setDestinationId('cretace')
       else if (lower.includes('florence')) setDestinationId('florence-1504')
     } catch {
-      setResult('Notre conseiller est momentanément indisponible. Explorez nos destinations pour trouver votre époque idéale.')
+      setResult(
+        'Notre conseiller est momentanément indisponible. Explorez nos destinations pour trouver votre époque idéale.',
+      )
     } finally {
       setLoading(false)
     }
@@ -75,14 +79,11 @@ Commence ta réponse par le nom exact de la destination recommandée, puis expli
 
   if (!open) return null
 
-  const recommended = destinationId ? DESTINATIONS.find(d => d.id === destinationId) : null
+  const recommended = destinationId ? DESTINATIONS.find((d) => d.id === destinationId) : null
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={handleClose}
-      />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleClose} />
 
       <div className="animate-in fade-in zoom-in-95 relative w-full max-w-lg rounded-2xl border border-border bg-card shadow-2xl shadow-black/50 duration-200">
         {/* Header */}
@@ -147,7 +148,9 @@ Commence ta réponse par le nom exact de la destination recommandée, puis expli
                 <span className="h-2 w-2 animate-bounce rounded-full bg-primary [animation-delay:150ms]" />
                 <span className="h-2 w-2 animate-bounce rounded-full bg-primary [animation-delay:300ms]" />
               </div>
-              <p className="text-sm text-muted-foreground">Notre conseiller analyse votre profil…</p>
+              <p className="text-sm text-muted-foreground">
+                Notre conseiller analyse votre profil…
+              </p>
             </div>
           )}
 
@@ -161,8 +164,12 @@ Commence ta réponse par le nom exact de la destination recommandée, puis expli
                 >
                   <recommended.Icon size={32} className="shrink-0 text-white/60" strokeWidth={1} />
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-widest text-white/60">{recommended.era}</p>
-                    <p className="font-display text-lg font-light text-white">{recommended.title}</p>
+                    <p className="text-xs font-medium uppercase tracking-widest text-white/60">
+                      {recommended.era}
+                    </p>
+                    <p className="font-display text-lg font-light text-white">
+                      {recommended.title}
+                    </p>
                   </div>
                 </div>
               )}

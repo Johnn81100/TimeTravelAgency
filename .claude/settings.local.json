@@ -20,7 +20,9 @@
       "Bash(npx vitest *)",
       "Bash(gh run *)",
       "Bash(npx tsc *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)",
+      "Bash(npx prettier *)",
+      "Bash(npx tsx *)"
     ]
   },
   "hooks": {

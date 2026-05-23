@@ -31,7 +31,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button size="sm" className="hidden md:inline-flex">Réserver</Button>
+          <Button size="sm" className="hidden md:inline-flex">
+            Réserver
+          </Button>
 
           {/* Hamburger — mobile only */}
           <button
@@ -61,7 +63,9 @@ export function Header() {
             >
               Assistant IA
             </button>
-            <Button size="sm" className="mt-2 w-full">Réserver</Button>
+            <Button size="sm" className="mt-2 w-full">
+              Réserver
+            </Button>
           </nav>
         </div>
       )}

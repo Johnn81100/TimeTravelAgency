@@ -49,7 +49,7 @@ describe('sendMessage', () => {
     expect(body.messages[1]).toEqual({ role: 'user', content: 'test' })
   })
 
-  it('lève une erreur avec le statut HTTP en cas d\'échec', async () => {
+  it("lève une erreur avec le statut HTTP en cas d'échec", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
       status: 401,

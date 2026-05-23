@@ -15,7 +15,9 @@ export function ChatWidget() {
   }, [messages, loading])
 
   useEffect(() => {
-    function handleOpen() { setOpen(true) }
+    function handleOpen() {
+      setOpen(true)
+    }
     window.addEventListener('open-chatbot', handleOpen)
     return () => window.removeEventListener('open-chatbot', handleOpen)
   }, [])
@@ -49,8 +51,7 @@ export function ChatWidget() {
           <div className="flex-1 space-y-3 overflow-y-auto p-4">
             {messages.length === 0 && (
               <p className="pt-8 text-center text-xs text-muted-foreground">
-                Bonjour ! Je suis votre conseiller de voyage temporel.
-                Comment puis-je vous aider ?
+                Bonjour ! Je suis votre conseiller de voyage temporel. Comment puis-je vous aider ?
               </p>
             )}
             {messages.map((msg, i) => (
@@ -63,16 +64,11 @@ export function ChatWidget() {
                 <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary [animation-delay:300ms]" />
               </div>
             )}
-            {error && (
-              <p className="text-center text-xs text-destructive">{error}</p>
-            )}
+            {error && <p className="text-center text-xs text-destructive">{error}</p>}
             <div ref={bottomRef} />
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="flex gap-2 border-t border-border p-3"
-          >
+          <form onSubmit={handleSubmit} className="flex gap-2 border-t border-border p-3">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}

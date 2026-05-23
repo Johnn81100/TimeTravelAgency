@@ -9,7 +9,9 @@ export function DestinationPage() {
   const { id } = useParams<{ id: string }>()
   const destination = getDestinationById(id ?? '')
 
-  useEffect(() => { window.scrollTo(0, 0) }, [id])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [id])
 
   if (!destination) return <Navigate to="/" replace />
 
@@ -42,10 +44,7 @@ export function DestinationPage() {
         {/* Retour */}
         <Link
           to="/"
-          className={cn(
-            buttonVariants({ variant: 'ghost', size: 'sm' }),
-            'mb-10 -ml-2 gap-2',
-          )}
+          className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'mb-10 -ml-2 gap-2')}
         >
           <ArrowLeft size={16} />
           Retour aux destinations
@@ -75,17 +74,12 @@ export function DestinationPage() {
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {destination.highlights.map((h, i) => (
-              <div
-                key={h.title}
-                className="rounded-xl border border-border bg-card p-6"
-              >
+              <div key={h.title} className="rounded-xl border border-border bg-card p-6">
                 <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
                   {i + 1}
                 </div>
                 <h3 className="mb-2 font-medium text-foreground">{h.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {h.description}
-                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{h.description}</p>
               </div>
             ))}
           </div>
@@ -93,9 +87,7 @@ export function DestinationPage() {
 
         {/* Infos pratiques */}
         <div className="mb-16 rounded-2xl border border-border bg-card p-8">
-          <h2 className="mb-6 font-display text-3xl font-light text-foreground">
-            Infos pratiques
-          </h2>
+          <h2 className="mb-6 font-display text-3xl font-light text-foreground">Infos pratiques</h2>
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-primary">
