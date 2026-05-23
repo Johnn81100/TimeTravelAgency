@@ -44,6 +44,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Corrections audit : SPA fallback, routing catch-all, animations
 - [x] Ouverture chatbot depuis nav, hero et pages destination (custom event `open-chatbot`)
 - [x] Scroll-margin-top sur la section destinations (header sticky)
+- [x] Menu hamburger mobile (Destinations, Assistant IA, Réserver)
 
 ## Architecture — Feature-First
 
