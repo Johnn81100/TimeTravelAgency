@@ -16,7 +16,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Tailwind CSS v4** (via `@tailwindcss/vite`, sans `tailwind.config.ts`)
 - **shadcn/ui** (composants UI, style `base-nova`, `@base-ui/react`)
 - **Font** : Geist Variable (UI) + Cormorant Garamond (titres display)
-- **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered)
+- **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered) + **Framer Motion** (transitions de page)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
 - **Déploiement** : Vercel
 - **Tests unitaires** : Vitest + jsdom + Testing Library (fonctions clés)
@@ -35,7 +35,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 
 - Page d'accueil : hero animé, galerie des 3 destinations, footer
 - Navigation SPA avec React Router — pages de détail par destination
-- Animations au chargement (hero) et au scroll (cartes, Intersection Observer)
+- Animations au chargement (hero), au scroll (cartes, Intersection Observer) et entre les pages (Framer Motion `AnimatePresence`)
 - Widget chatbot IA flottant sur toutes les pages (Mistral `mistral-small-latest`)
 - Quiz de recommandation IA (4 questions → recommandation Mistral → destination personnalisée)
 - Menu hamburger sur mobile
