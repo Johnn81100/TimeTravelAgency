@@ -19,8 +19,9 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered)
 - **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
 - **Déploiement** : Vercel
+- **Tests unitaires** : Vitest + jsdom + Testing Library (fonctions clés)
 - **Tests E2E** : Playwright (Chromium + Mobile Chrome)
-- **CI** : GitHub Actions (tests sur chaque push/PR vers `main`)
+- **CI** : GitHub Actions — unitaires puis E2E sur chaque push/PR vers `main`
 
 ## Destinations
 
@@ -39,6 +40,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - Quiz de recommandation IA (4 questions → recommandation Mistral → destination personnalisée)
 - Menu hamburger sur mobile
 - Déploiement Vercel avec fallback SPA
+- 15 tests unitaires Vitest (fonctions clés : `getDestinationById`, `sendMessage`, `useChatbot`)
 - 39 tests E2E Playwright (parcours principal, quiz, cas limites, responsive)
 
 ## Architecture — Feature-First
@@ -56,6 +58,7 @@ src/
 ├── hooks/                     # useInView (Intersection Observer)
 ├── lib/                       # cn(), client API Mistral
 ├── assets/                    # Images destinations (paris-1889, cretace, florence-1504)
+├── test/                      # Setup Vitest + mock assets
 ├── App.tsx                    # Router + routes + ChatWidget + QuizModal globaux
 ├── main.tsx
 ├── index.css                  # Thème oklch, Tailwind v4
@@ -67,7 +70,7 @@ tests/
     └── edge-cases.spec.ts     # 9 tests — cas limites, abandon, responsive
 .github/
 └── workflows/
-    └── e2e.yml                # CI — build + Playwright sur push/PR main
+    └── e2e.yml                # CI — unitaires (Vitest) puis E2E (Playwright)
 ```
 
 Chaque feature est un dossier autonome — pas de dépendances croisées entre features.
@@ -100,8 +103,9 @@ Ce projet a été entièrement développé avec des outils IA :
 - **Composants** : chaque feature générée via Claude Code avec itérations successives (corrections de bugs, alignement des boutons, animations)
 - **Design review** : agent Alexis invoqué pour audit UX — corrections appliquées sur le header, footer, cartes et chatbot
 - **Chatbot** : intégration API Mistral avec hook custom `useChatbot`, gestion du loading/erreur et auto-scroll
-- **Tests** : 39 tests E2E Playwright écrits avec Claude Code — golden path, quiz (Mistral mocké via `page.route()`), cas limites (erreurs 500, abandon de quiz, responsive), débogage de race conditions et worker concurrency
-- **CI** : workflow GitHub Actions + règle de protection de branche `main` — les tests bloquent le merge si non verts
+- **Tests unitaires** : 15 tests Vitest sur les fonctions clés (`getDestinationById`, `sendMessage`, `useChatbot`) — fetch mocké via `vi.stubGlobal`, hook testé avec `renderHook`
+- **Tests E2E** : 39 tests Playwright — golden path, quiz (Mistral mocké via `page.route()`), cas limites (erreurs 500, abandon, responsive)
+- **CI** : GitHub Actions — unitaires d'abord (fail fast), puis E2E ; protection de branche `main` bloque le merge si non verts
 
 ## Installation
 
@@ -121,11 +125,28 @@ Obtenir une clé sur [console.mistral.ai](https://console.mistral.ai).
 npm run dev
 ```
 
-## Tests E2E
+## Tests
+
+### Tests unitaires (Vitest)
 
 ```bash
-npx playwright test                  # tous les tests (Chromium + Mobile Chrome)
-npx playwright test --project=chromium  # Chromium uniquement
+npm test          # mode watch
+npm test -- --run # one-shot
+```
+
+15 tests couvrant les fonctions clés :
+
+| Fichier | Tests | Couverture |
+|---|---|---|
+| `destinationsData.test.ts` | 5 | `getDestinationById` — id valide, inconnu, champs requis |
+| `mistral.test.ts` | 5 | `sendMessage` — réponse OK, endpoint, system prompt, erreurs 401/429 |
+| `useChatbot.test.ts` | 5 | Hook — état initial, messages, loading, erreur, reset |
+
+### Tests E2E (Playwright)
+
+```bash
+npx playwright test                               # tous les tests
+npx playwright test --project=chromium            # Chromium uniquement
 npx playwright test tests/e2e/edge-cases.spec.ts  # un fichier spécifique
 ```
 
