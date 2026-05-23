@@ -17,7 +17,7 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - **shadcn/ui** (composants UI, style `base-nova`, `@base-ui/react`)
 - **Font** : Geist Variable (UI) + Cormorant Garamond (titres display)
 - **Animations** : `tw-animate-css` + Intersection Observer (scroll-triggered) + **Framer Motion** (transitions de page)
-- **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant
+- **Chatbot IA** : API Mistral (`mistral-small-latest`), widget flottant — appels via proxy serverless `api/chat.ts` (clé non exposée au navigateur)
 - **Déploiement** : Vercel + **Vercel Analytics** (suivi des pages vues par route)
 - **Tests unitaires** : Vitest + jsdom + Testing Library (fonctions clés)
 - **Tests E2E** : Playwright (Chromium + Mobile Chrome)
@@ -47,6 +47,8 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 ## Architecture — Feature-First
 
 ```
+api/
+└── chat.ts                    # Proxy serverless Vercel — appelle Mistral avec MISTRAL_API_KEY (côté serveur)
 src/
 ├── features/
 │   ├── home/                  # Hero, HomePage
@@ -57,7 +59,7 @@ src/
 │   ├── ui/                    # Composants shadcn/ui (Button)
 │   └── layout/                # Header, Footer, PageTransition (Framer Motion)
 ├── hooks/                     # useInView (Intersection Observer)
-├── lib/                       # cn(), client API Mistral
+├── lib/                       # cn(), client /api/chat
 ├── assets/                    # Images destinations (paris-1889, cretace, florence-1504)
 ├── test/                      # Setup Vitest + mock assets
 ├── App.tsx                    # BrowserRouter + AnimatedRoutes (AnimatePresence) + ChatWidget + QuizModal
@@ -103,7 +105,7 @@ Ce projet a été entièrement développé avec des outils IA :
 - **Architecture** : brief fourni à Claude Code, qui a proposé et appliqué la structure feature-first
 - **Composants** : chaque feature générée via Claude Code avec itérations successives (corrections de bugs, alignement des boutons, animations)
 - **Design review** : agent Alexis invoqué pour audit UX — corrections appliquées sur le header, footer, cartes et chatbot
-- **Chatbot** : intégration API Mistral avec hook custom `useChatbot`, gestion du loading/erreur et auto-scroll
+- **Chatbot** : intégration API Mistral via proxy serverless `api/chat.ts` — clé `MISTRAL_API_KEY` non exposée au navigateur, hook custom `useChatbot`, gestion du loading/erreur et auto-scroll
 - **Animations de page** : Framer Motion `AnimatePresence` + `PageTransition` wrapper — fade + glissement 250ms entre les routes ; scroll-to-top `useEffect` sur chaque navigation
 - **Tests unitaires** : 15 tests Vitest sur les fonctions clés (`getDestinationById`, `sendMessage`, `useChatbot`) — fetch mocké via `vi.stubGlobal`, hook testé avec `renderHook`
 - **Tests E2E** : 39 tests Playwright — golden path, quiz (Mistral mocké via `page.route()`), cas limites (erreurs 500, abandon, responsive)
@@ -115,17 +117,29 @@ Ce projet a été entièrement développé avec des outils IA :
 npm install
 ```
 
+### Développement frontend uniquement
+
+```bash
+npm run dev
+```
+
+Le chatbot ne fonctionnera pas localement (le proxy serverless nécessite Vercel).
+
+### Développement full-stack (chatbot fonctionnel en local)
+
 Créer un fichier `.env` à la racine :
 
 ```
-VITE_MISTRAL_API_KEY=ta_clé_mistral
+MISTRAL_API_KEY=ta_clé_mistral
 ```
 
 Obtenir une clé sur [console.mistral.ai](https://console.mistral.ai).
 
 ```bash
-npm run dev
+vercel dev
 ```
+
+`vercel dev` démarre à la fois le frontend Vite et les fonctions serverless (`api/chat.ts`).
 
 ## Tests
 
@@ -141,7 +155,7 @@ npm test -- --run # one-shot
 | Fichier | Tests | Couverture |
 |---|---|---|
 | `destinationsData.test.ts` | 5 | `getDestinationById` — id valide, inconnu, champs requis |
-| `mistral.test.ts` | 5 | `sendMessage` — réponse OK, endpoint, system prompt, erreurs 401/429 |
+| `mistral.test.ts` | 5 | `sendMessage` — réponse OK, endpoint `/api/chat`, pas de system prompt côté client, erreurs 401/429 |
 | `useChatbot.test.ts` | 5 | Hook — état initial, messages, loading, erreur, reset |
 
 ### Tests E2E (Playwright)
@@ -160,7 +174,7 @@ npx playwright test tests/e2e/edge-cases.spec.ts  # un fichier spécifique
 | `quiz.spec.ts` | 5 | Quiz complet, reset, fermeture |
 | `edge-cases.spec.ts` | 9 | Erreurs API, abandon, responsive |
 
-Les appels Mistral sont mockés via `page.route()` — aucune dépendance réseau externe.
+Les appels au proxy `/api/chat` sont mockés via `page.route()` — aucune dépendance réseau externe.
 
 Le rapport HTML est généré dans `playwright-report/`.
 
