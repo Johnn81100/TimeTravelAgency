@@ -71,7 +71,7 @@ export function DestinationPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {destination.highlights.map((h, i) => (
               <div
-                key={i}
+                key={h.title}
                 className="rounded-xl border border-border bg-card p-6"
               >
                 <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
@@ -131,12 +131,12 @@ export function DestinationPage() {
           <p className="mb-6 text-muted-foreground">
             Notre assistant IA peut répondre à toutes vos questions et vous aider à réserver.
           </p>
-          <Link
-            to="/#chatbot"
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-chatbot'))}
             className={cn(buttonVariants({ size: 'lg' }), 'px-8')}
           >
             Parler à notre assistant
-          </Link>
+          </button>
         </div>
       </div>
     </div>

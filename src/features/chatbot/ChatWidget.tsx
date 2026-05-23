@@ -14,6 +14,12 @@ export function ChatWidget() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
+  useEffect(() => {
+    function handleOpen() { setOpen(true) }
+    window.addEventListener('open-chatbot', handleOpen)
+    return () => window.removeEventListener('open-chatbot', handleOpen)
+  }, [])
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const trimmed = input.trim()

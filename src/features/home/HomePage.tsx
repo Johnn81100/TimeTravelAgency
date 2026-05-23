@@ -2,7 +2,6 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from './HeroSection'
 import { DestinationsSection } from '@/features/destinations/DestinationsSection'
-import { ChatWidget } from '@/features/chatbot/ChatWidget'
 
 function SectionDivider() {
   return (
@@ -24,7 +23,6 @@ export function HomePage() {
         <DestinationsSection />
       </main>
       <Footer />
-      <ChatWidget />
     </div>
   )
 }

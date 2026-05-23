@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
+  const [inView, setInView] = useState(() => typeof IntersectionObserver === 'undefined')
 
   useEffect(() => {
     const el = ref.current
