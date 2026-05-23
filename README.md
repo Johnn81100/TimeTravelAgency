@@ -88,6 +88,10 @@ npm run build
 npm run preview
 ```
 
+## Membres du groupe
+
+- **GAU Jonathan**
+
 ## Licence
 
 Projet pédagogique — M1/M2 Digital & IA
