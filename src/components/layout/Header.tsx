@@ -11,9 +11,12 @@ export function Header() {
           <a href="#destinations" className="transition-colors hover:text-foreground">
             Destinations
           </a>
-          <a href="#chatbot" className="transition-colors hover:text-foreground">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-chatbot'))}
+            className="transition-colors hover:text-foreground"
+          >
             Assistant IA
-          </a>
+          </button>
         </nav>
         <Button size="sm">Réserver</Button>
       </div>
