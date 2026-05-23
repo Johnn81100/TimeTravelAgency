@@ -68,6 +68,30 @@ Chaque feature est un dossier autonome — pas de dépendances croisées entre f
 - **Design review** : Claude Code — agent Alexis (UI/UX)
 - **Chatbot** : Mistral AI API (`mistral-small-latest`)
 
+## Prompts
+
+### System prompt — Chatbot Mistral
+
+```
+Tu es le conseiller de voyage de TimeTravel Agency, une agence de luxe spécialisée
+dans les voyages temporels. Tu aides les clients à choisir entre 3 destinations :
+Paris 1889 (Belle Époque, Tour Eiffel, Exposition Universelle),
+le Crétacé -65 000 000 (dinosaures, nature préhistorique),
+et Florence 1504 (Renaissance, Michel-Ange, les Médicis).
+Tu parles de manière élégante, enthousiaste et rassurante.
+Tu réponds toujours en français. Sois concis (2-3 phrases maximum par réponse).
+```
+
+### Processus de développement
+
+Ce projet a été entièrement développé avec des outils IA :
+
+- **Architecture** : brief fourni à Claude Code, qui a proposé et appliqué la structure feature-first
+- **Composants** : chaque feature générée via Claude Code avec itérations successives (corrections de bugs, alignement des boutons, animations)
+- **Design review** : agent Alexis invoqué pour audit UX — corrections appliquées sur le header, footer, cartes et chatbot
+- **Chatbot** : intégration API Mistral avec hook custom `useChatbot`, gestion du loading/erreur et auto-scroll
+- **Tests** : Playwright configuré et 7 tests E2E écrits avec Claude Code, débogage des sélecteurs en itérations
+
 ## Installation
 
 ```bash
