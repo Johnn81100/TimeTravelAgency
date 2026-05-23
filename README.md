@@ -39,8 +39,9 @@ Webapp pour une agence de voyage temporel fictive de luxe, créée dans le cadre
 - [x] Galerie des 3 destinations (cartes avec gradient par époque)
 - [x] Pages de détail par destination (React Router)
 - [x] Animations au chargement (Hero) et au scroll (cartes)
-- [x] Agent conversationnel IA (Mistral `mistral-small-latest`, widget flottant)
+- [x] Agent conversationnel IA (Mistral `mistral-small-latest`, widget flottant sur toutes les pages)
 - [x] Déploiement Vercel
+- [x] Corrections audit : SPA fallback, routing catch-all, CTA chatbot, animations
 
 ## Architecture — Feature-First
 
@@ -55,9 +56,10 @@ src/
 │   └── layout/                # Header, Footer
 ├── hooks/                     # useInView (Intersection Observer)
 ├── lib/                       # cn(), client API Mistral
-├── App.tsx                    # Router + routes
+├── App.tsx                    # Router + routes + ChatWidget global
 ├── main.tsx
-└── index.css                  # Thème oklch, Tailwind v4
+├── index.css                  # Thème oklch, Tailwind v4
+└── vercel.json                # Rewrite SPA fallback
 ```
 
 Chaque feature est un dossier autonome — pas de dépendances croisées entre features.
